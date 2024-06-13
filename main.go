@@ -1,17 +1,13 @@
 package main
 
 import (
-	"net/http"
 	"fmt"
+
+	"aries-technical-challenge/routes"
 )
 
 func main() {
-	http.HandleFunc("/analyze", analyzeHandler)
-
+	ginRouter := routes.SetupRouter()
 	fmt.Println("Starting server on port 8080")
-	http.ListenAndServe(":8080", nil)
-}
-
-func analyzeHandler(w http.ResponseWriter, r *http.Request) {
-	// Your code here
+	ginRouter.Run(":8080")
 }
